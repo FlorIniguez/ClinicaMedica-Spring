@@ -5,7 +5,6 @@ import com.auth0.jwt.algorithms.Algorithm;
 import com.auth0.jwt.exceptions.JWTCreationException;
 import com.auth0.jwt.exceptions.JWTVerificationException;
 import com.auth0.jwt.interfaces.DecodedJWT;
-import jdk.swing.interop.SwingInterOpUtils;
 import med.voll.api.domain.usuarios.Usuario;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
@@ -35,7 +34,7 @@ public class TokenService {
     }
 
     public String getSubject(String token) {
-        if (token == null){
+        if (token == null) {
             throw new RuntimeException();
         }
         //copio del repo de github de jwt y cambio a mis datos el tipo de algoritmo

@@ -10,10 +10,12 @@ import java.time.LocalDateTime;
 
 @Repository
 public interface MedicoRepository extends JpaRepository<Medico, Long> {
+    //no requiere test,. ya lo hace spring framework. Si no esta 0k me da error
     Page<Medico> findByActivoTrue(Pageable paginacion);
 
     //Busca medico activo true y especialidad, sino encuentra por id, busca por que NO tenga consulta en
     // esa fecha/hora
+    // --- TEST ---
     @Query("""
             select m from Medico m
             where m.activo= true
@@ -30,10 +32,11 @@ public interface MedicoRepository extends JpaRepository<Medico, Long> {
             """)
     Medico seleccionarMedicoConEspecialidadEnFecha(Especialidad especialidad, LocalDateTime fecha);
 
-@Query("""
-        select m.activo
-        from Medico m
-        where m.id=:idMedico
-        """)
-  Boolean findActivoById(Long idMedico);
+    //hacerlo por mi cuenta
+    @Query("""
+            select m.activo
+            from Medico m
+            where m.id=:idMedico
+            """)
+    Boolean findActivoById(Long idMedico);
 }
